@@ -125,36 +125,7 @@ router.post('/email-verification', async (req, res) => {
                 OTP: otp
             })
             // Send the OTP via email
-            const transporter = nodemailer.createTransport({
-                service: 'Gmail', // E.g., 'Gmail', 'Yahoo', etc.
-                auth: {
-                    user: 'visstechapps@gmail.com',
-                    pass: 'bomuubtkvclgvacn',
-                },
-            });
-            const mailOptions = {
-                from: 'visstechapps@gmail.com',
-                to: email,
-                subject: 'Password Reset OTP',
-                text: `Your OTP For Password Reset Is: ${otp}`,
-            };
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    console.error(error);
-                    res.send({
-                        success: "false",
-                        message: 'Failed To Send OTP.'
-                    });
-                } else {
-                    console.log('Email sent: ' + info.response);
-                    res.send({
-                        success: "true",
-                        message: 'OTP Sent Successfully.',
-                        id: user_email?._id,
-                        "OTP Code": otp
-                    });
-                }
-            });
+ 
 
         } else {
             res.send({
@@ -236,28 +207,28 @@ router.post('/verify', async (req, res) => {
             //     },
             // });
 
-            var transporter = nodemailer.createTransport({
-                service: 'gmail',
-                port: 465,
-                secure: true, // true for 465, false for other ports
-                logger: true,
-                debug: true,
-                secureConnection: false,
-                auth: {
-                    user: 'visstechapps@gmail.com',
-                    pass: 'bomuubtkvclgvacn',
-                },
-                tls: {
-                    rejectUnAuthorized: true
-                }
-            })
+            // var transporter = nodemailer.createTransport({
+            //     service: 'gmail',
+            //     port: 465,
+            //     secure: true, // true for 465, false for other ports
+            //     logger: true,
+            //     debug: true,
+            //     secureConnection: false,
+            //     auth: {
+            //         user: 'visstechapps@gmail.com',
+            //         pass: 'bomuubtkvclgvacn',
+            //     },
+            //     tls: {
+            //         rejectUnAuthorized: true
+            //     }
+            // })
 
-            const mailOptions = ({
-                from: 'visstechapps@gmail.com',
-                to: 'wickybilal99@gmail.com',
-                subject: 'Password Reset OTP',
-                text: `Your OTP For Password Reset Is: ${otp}`,
-            });
+            // const mailOptions = ({
+            //     from: 'visstechapps@gmail.com',
+            //     to: 'wickybilal99@gmail.com',
+            //     subject: 'Password Reset OTP',
+            //     text: `Your OTP For Password Reset Is: ${otp}`,
+            // });
 
 
 
@@ -266,8 +237,8 @@ router.post('/verify', async (req, res) => {
 
 
             try {
-                const info = await transporter.sendMail(mailOptions);
-                console.log('Email sent: ' + info.response);
+                // const info = await transporter.sendMail(mailOptions);
+                // console.log('Email sent: ' + info.response);
                 res.send({
                     success: "true",
                     message: 'OTP Sent Successfully.',
